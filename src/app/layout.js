@@ -17,6 +17,9 @@ const dm_sans = DM_Sans({
 export const metadata = {
   title: "Purvaj Ayurveda - Premium Herbal Supplements for Natural Wellness",
   description: "Discover Purvaj Ayurveda - Premium herbal supplements for natural wellness. Plant-based formulations, 100% vegetarian, clinically proven.",
+  icons: {
+    icon: '/products/profile.jpg',
+  },
 };
 
 export default function RootLayout({ children }) {
