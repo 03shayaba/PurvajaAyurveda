@@ -61,12 +61,13 @@ export default function Features() {
     <section ref={sectionRef} className="py-20 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <div className="feature-header text-center mb-12">
-          <span className="font-noto text-[#C8963E] font-medium tracking-widest uppercase text-sm block mb-2">
+          <span className="font-sans text-[#C8963E] font-bold tracking-luxury uppercase text-[10px] block mb-2">
             Carefully Crafted Remedies
           </span>
-          <p className="text-3xl sm:text-4xl    text-[#1B4332] font-bold tracking-light font-noto ">
+          <p className="text-3xl sm:text-4xl text-[#1B4332] font-sans font-semibold tracking-tight">
             Clean, Green & Sustainable
           </p>
+          <div className="w-16 h-0.5 bg-[#C8963E]/30 mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
@@ -75,7 +76,10 @@ export default function Features() {
             <Image src="/products/cover2.jpg" alt="Plant based formulations" fill className="object-cover" />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <div className="text-center text-white p-6">
-                <h3 className="font-noto text-xl lg:text-2xl font-medium mb-3  tracking-wide">Plant-based Formulations.<br/>We Promise. We deliver.</h3>
+                <h3 className="font-sans text-xl lg:text-3xl font-semibold mb-4 tracking-tight leading-tight">
+                  Plant-based Formulations.<br />
+                  <span className="">We Promise. We Deliver.</span>
+                </h3>
                 <Link href="/about" className="bg-[#C8963E] text-white px-6 py-2 rounded-full font-medium">
                   Know More
                 </Link>

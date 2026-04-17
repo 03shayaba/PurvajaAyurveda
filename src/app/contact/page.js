@@ -61,7 +61,7 @@ export default function Contact() {
             <span className="text-white">Contact Us</span>
           </nav>
 
-          <p className="font-semibold tracking-light font-noto  text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight">
+          <p className="font-semibold tracking-light font-sans  text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight">
             Connect <span className="text-[#C8963E]">With Us</span>
           </p>
 
@@ -77,7 +77,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <p className="font-bold tracking-light font-noto text-3xl mb-6">Get in Touch</p>
+              <p className="font-bold tracking-light font-sans text-3xl mb-6">Get in Touch</p>
               <p className="text-gray-600 mb-8">Have questions about our products? Need consultation? Reach out to us and our team will assist you.</p>
 
               <div className="space-y-6">
@@ -86,7 +86,7 @@ export default function Contact() {
                     <FiMessageCircle className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-xl tracking-light font-noto">WhatsApp</p>
+                    <p className="font-semibold text-xl tracking-light font-sans">WhatsApp</p>
                     <p className="text-gray-600">+91 70270 30661</p>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export default function Contact() {
                     <FiPhone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-xl tracking-light font-noto">Mobile</p>
+                    <p className="font-semibold text-xl tracking-light font-sans">Mobile</p>
                     <p className="text-gray-600">090539 15050</p>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export default function Contact() {
                     <FiMail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-xl tracking-light font-noto">Email</p>
+                    <p className="font-semibold text-xl tracking-light font-sans">Email</p>
                     <p className="text-gray-600">info@purvajaayurveda.com</p>
                   </div>
                 </div>
@@ -113,14 +113,14 @@ export default function Contact() {
                     <FiMapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-xl tracking-light font-noto">Address</p>
+                    <p className="font-semibold text-xl tracking-light font-sans">Address</p>
                     <p className="text-gray-600">Sonipat, Sonipat, India, 131001</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8">
-                <p className="font-semibold text-xl tracking-light font-noto mb-4">Our Location</p>
+                <p className="font-semibold text-xl tracking-light font-sans mb-4">Our Location</p>
                 <div className="h-64 w-full rounded-lg overflow-hidden">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448983.8505092273!2d76.8!3d29.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390dac74bc91f3d5%3A0x46c5d1e2c7b2e020!2sSonipat%2C%20Haryana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -136,7 +136,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <p className="font-bold tracking-light font-noto text-3xl mb-6">Send us a Message</p>
+              <p className="font-bold tracking-light font-sans text-3xl mb-6">Send us a Message</p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>

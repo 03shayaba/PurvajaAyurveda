@@ -36,11 +36,11 @@ export default function HealNaturally() {
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-64 h-64 bg-[#C8963E]/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="heal-content max-w-4xl mx-auto px-4 text-center relative z-10">
-        <span className="text-[#C8963E] font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Holistic Recovery</span>
-        <h2 className="text-4xl md:text-6xl font-semibold tracking-light font-noto text-[#2D5A27] mb-8 leading-tight">
-          Heal Naturally with <br /> <span className=" font-semibold tracking-light font-noto  text-[#C8963E]">Purvaj Ayurveda</span>
+        <span className="text-[#C8963E] font-bold tracking-luxury text-[10px] uppercase mb-4 block">Holistic Recovery</span>
+        <h2 className="text-4xl md:text-6xl font-sans font-semibold tracking-tight text-[#2D5A27] mb-8 leading-tight">
+          Heal Naturally with <br /> <span className="font-sans font-semibold tracking-tight text-[#C8963E] ">Purvaj Ayurveda</span>
         </h2>
-        <p className="text-gray-600 text-xl mb-12 leading-relaxed max-w-2xl mx-auto font-noto">
+        <p className="text-gray-600 text-xl mb-12 leading-relaxed max-w-2xl mx-auto font-sans ">
           Discover a rare sanctuary where ancient Vedic wisdom meets clinical precision. 
           Our 100% natural rituals are crafted to restore your sacred balance.
         </p>

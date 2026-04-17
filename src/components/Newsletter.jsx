@@ -22,9 +22,9 @@ export default function Newsletter() {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#2D5A27]/20 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="newsletter-content max-w-4xl mx-auto px-4 text-center relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 p-10 md:p-16 rounded-[3rem] shadow-2xl">
-        <span className="text-[#C8963E] font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Exclusive Knowledge</span>
-        <p className="font-semibold tracking-light font-noto text-3xl md:text-4xl text-white mb-6 leading-tight">Join the <span className="text-[#C8963E] ">Purvaj Tribe</span></p>
-        <p className="text-white/60 mb-10 text-lg max-w-xl mx-auto font-noto leading-relaxed">
+        <span className="text-[#C8963E] font-bold tracking-luxury text-[10px] uppercase mb-4 block">Exclusive Knowledge</span>
+        <p className="font-sans font-semibold tracking-tight text-3xl md:text-5xl text-white mb-6 leading-tight">Join the <span className="text-[#C8963E] ">Purvaj Tribe</span></p>
+        <p className="text-white/60 mb-10 text-lg max-w-xl mx-auto font-sans  leading-relaxed">
           Deep Ayurvedic insights, private ritual launches and exclusive wellness secrets. Direct to your inbox.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">

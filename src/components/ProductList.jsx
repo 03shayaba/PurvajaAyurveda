@@ -38,7 +38,7 @@ export default function ProductList() {
   return (
     <section className="py-12 bg-[#FFFAF5]">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="font-semibold tracking-light font-noto text-2xl md:text-3xl  text-[#1B4332] text-center mb-2">All Products</h2>
+        <h2 className="font-semibold tracking-light font-sans text-2xl md:text-3xl  text-[#1B4332] text-center mb-2">All Products</h2>
 
         <p className="text-center text-gray-600 mb-6">Shop by Category</p>
 
@@ -85,7 +85,7 @@ export default function ProductList() {
 
               {/* Content Section */}
               <div className="flex-grow px-2">
-                <p className=" text-md font-semibold  tracking-light font-noto text-gray-900 mb-1 leading-tight group-hover:text-[#2D5A27] transition-colors line-clamp-2 min-h-[3rem] flex items-center">
+                <p className=" text-md font-semibold  tracking-light font-sans text-gray-900 mb-1 leading-tight group-hover:text-[#2D5A27] transition-colors line-clamp-2 min-h-[3rem] flex items-center">
                   {product.name}
                 </p>
                 <p className="text-gray-400 text-[10px] mb-4 font-medium uppercase tracking-wider">

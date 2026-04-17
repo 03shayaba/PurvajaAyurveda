@@ -38,7 +38,7 @@ export default function ShopByCategory() {
   return (
     <section className="py-12 bg-[#FFFAF5]">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="font-serif text-2xl md:text-3xl font-bold text-center mb-2">Shop by Category</h2>
+        <h2 className="font-sans text-2xl md:text-3xl font-bold text-center mb-2">Shop by Category</h2>
         
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {categories.map((cat) => (

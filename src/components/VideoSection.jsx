@@ -86,9 +86,12 @@ export default function VideoSection() {
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <p className=" font-bold tracking-light font-noto  text-4xl f text-[#1B4332] text-center mb-3">Watch Our Videos</p>
-        <div className="w-20 h-1 bg-[#C8963E] mx-auto mb-8 rounded-full"></div>
-        <p className="text-center text-gray-600 mb-12">Experience the wisdom of Ayurveda through our reels.</p>
+        <div className="text-center mb-12">
+          <span className="text-[#C8963E] font-bold tracking-luxury uppercase text-[10px] block mb-2">Visual Wisdom</span>
+          <p className="text-3xl sm:text-4xl font-sans font-semibold tracking-tight text-[#1B4332]">Watch Our Stories</p>
+          <div className="w-16 h-0.5 bg-[#C8963E]/30 mx-auto mt-4 rounded-full"></div>
+          <p className="text-gray-600 mt-6 font-sans text-lg">Experience the ancient wisdom of Ayurveda through our curated lenses.</p>
+        </div>
 
         <div className="relative group/nav px-1">
           <div ref={containerRef} className="overflow-hidden">
@@ -125,7 +128,7 @@ export default function VideoSection() {
                         className="absolute inset-0"
                       ></iframe>
                     </div>
-                    <p className="text-center mt-3 font-semibold text-gray-800 text-xs  font-bold tracking-light font-noto ">{video.title}</p>
+                    <p className="text-center mt-4 font-sans font-semibold text-gray-800 text-sm tracking-tight">{video.title}</p>
                   </div>
                 </div>
               ))}

@@ -51,19 +51,19 @@ export default function Products() {
 
         {/* Content Layer */}
         <div className="hero-content relative z-10 text-center text-white px-4 max-w-4xl pt-16 flex flex-col items-center">
-          <nav className="flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C8963E] mb-8 hero-nav">
+          <nav className="flex items-center justify-center space-x-2 text-[10px] font-sans uppercase tracking-[0.3em] text-[#C8963E] mb-8 hero-nav">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white font-semibold tracking-light font-noto">Shop All</span>
+            <span className="text-white font-semibold tracking-light font-sans">Shop All</span>
           </nav>
 
-          <h1 className="text-4xl md:text-6xl font-semibold mb-6 leading-tight tracking-tight ">
-            Shop All <span className="text-[#C8963E] font-semibold tracking-light font-noto">Products</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight ">
+            Shop All <span className="text-[#C8963E] font-bold tracking-light font-sans">Products</span>
           </h1>
 
           <div className="w-32 h-1 bg-[#C8963E] mx-auto mb-10 rounded-full" />
 
-          <p className="text-lg md:text-xl lg:text-xl text-white/90 font-nato max-w-3xl mx-auto leading-relaxed ">
+          <p className="text-lg md:text-xl lg:text-xl text-white/90 font-sans max-w-3xl mx-auto leading-relaxed ">
             "Ancient wisdom meets modern purity. Discover formulations crafted to restore your natural balance and vitality."
           </p>
         </div>

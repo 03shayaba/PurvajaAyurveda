@@ -39,7 +39,7 @@ export default function CheckoutContent() {
       <div>
         <section className="h-[200px] flex items-center justify-center bg-primary-dark">
           <div className="text-center text-white">
-            <p className="font-semibold tracking-light font-noto text-3xl md:text-4xl mb-3">Checkout</p>
+            <p className="font-semibold tracking-light font-sans text-3xl md:text-4xl mb-3">Checkout</p>
           </div>
         </section>
         <section className="py-16 bg-[#FFFAF5]">
@@ -48,7 +48,7 @@ export default function CheckoutContent() {
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-4xl">✓</span>
               </div>
-              <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">Order Placed Successfully!</p>
+              <p className="font-semibold tracking-light font-sans text-2xl md:text-3xl mb-6">Order Placed Successfully!</p>
               <p className="text-gray-600 mb-8">
                 Thank you for your order. We will contact you shortly for confirmation.
               </p>
@@ -67,14 +67,14 @@ export default function CheckoutContent() {
       <div>
         <section className="h-[200px] flex items-center justify-center bg-primary-dark">
           <div className="text-center text-white">
-            <p className="font-semibold tracking-light font-noto text-3xl md:text-4xl mb-3">Checkout</p>
+            <p className="font-semibold tracking-light font-sans text-3xl md:text-4xl mb-3">Checkout</p>
           </div>
         </section>
         <section className="py-16 bg-[#FFFAF5]">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <div className="bg-white rounded-2xl shadow-lg p-12">
               <FiShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-6" />
-              <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">Your cart is empty</p>
+              <p className="font-semibold tracking-light font-sans text-2xl md:text-3xl mb-6">Your cart is empty</p>
               <p className="text-gray-600 mb-8">Add some products to your cart first.</p>
               <Link href="/products" className="bg-primary text-white px-8 py-3 rounded-full font-medium inline-block">
                 Shop Now
@@ -90,7 +90,7 @@ export default function CheckoutContent() {
     <div>
       <section className="h-[200px] flex items-center justify-center bg-primary-dark">
         <div className="text-center text-white">
-          <p className="font-semibold tracking-light font-noto text-3xl md:text-4xl mb-3">Checkout</p>
+          <p className="font-semibold tracking-light font-sans text-3xl md:text-4xl mb-3">Checkout</p>
         </div>
       </section>
 
@@ -104,7 +104,7 @@ export default function CheckoutContent() {
             {/* Form */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">Delivery Details</p>
+                <p className="font-semibold tracking-light font-sans text-2xl md:text-3xl mb-6">Delivery Details</p>
                 <form id="checkout-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -141,7 +141,7 @@ export default function CheckoutContent() {
             {/* Order Summary */}
             <div>
               <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
-                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">Order Summary</p>
+                <p className="font-semibold tracking-light font-sans text-2xl md:text-3xl mb-6">Order Summary</p>
                 <div className="space-y-4 mb-6">
                   {cart.map((item) => (
                     <div key={item.id} className="flex gap-4">
@@ -149,7 +149,7 @@ export default function CheckoutContent() {
                         <Image src={item.image} alt={item.name} fill className="object-cover" />
                       </div>
                       <div className="flex-1">
-                        <p className="font-noto text-md font-semibold text-gray-900 mb-1 tracking-tight leading-tight line-clamp-1">{item.name}</p>
+                        <p className="font-sans text-md font-semibold text-gray-900 mb-1 tracking-tight leading-tight line-clamp-1">{item.name}</p>
                         <p className="text-gray-500 text-sm">Qty: {item.quantity}</p>
                         <p className="font-semibold">₹{item.price * item.quantity}</p>
                       </div>
@@ -192,7 +192,7 @@ export default function CheckoutContent() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FiCheck className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-serif text-2xl font-bold mb-2">Confirm Order</h3>
+              <h3 className="font-sans text-2xl font-bold mb-2">Confirm Order</h3>
               <p className="text-gray-600 mb-4">Your order total is <span className="font-bold text-green-600">₹{cartTotal}</span></p>
               <p className="text-gray-500 text-sm mb-6">We will contact you on WhatsApp for payment & delivery.</p>
               <div className="flex gap-3 justify-center">

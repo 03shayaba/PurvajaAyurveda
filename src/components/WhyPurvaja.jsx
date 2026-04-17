@@ -17,12 +17,12 @@ export default function WhyPurvaja() {
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="why-header text-center mb-16">
-          <span className="text-[#C8963E] font-extrabold uppercase tracking-[0.3em] text-xs mb-3 block">Boutique Ayurveda</span>
-          <h2 className="text-4xl md:text-5xl  font-bold tracking-light font-noto  text-white mb-4 ">
-            Why Choose <span className="text-[#C8963E] ">Purvaj Ayurveda</span>?
+          <span className="text-[#C8963E] font-bold tracking-luxury uppercase text-[10px] mb-3 block">Boutique Ayurveda</span>
+          <h2 className="text-4xl md:text-5xl font-sans font-semibold tracking-tight text-white mb-4">
+            Why Choose <span className="text-[#C8963E]">Purvaj Ayurveda</span>?
           </h2>
-          <div className="w-16 h-1 bg-[#C8963E] mx-auto mb-6 rounded-full"></div>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed">Experience a rare synergy of ancient Vedic chemistry and modern clinical precision.</p>
+          <div className="w-16 h-0.5 bg-[#C8963E]/30 mx-auto mb-6 rounded-full"></div>
+          <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed font-sans ">Experience a rare synergy of ancient Vedic chemistry and modern clinical precision.</p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -32,7 +32,7 @@ export default function WhyPurvaja() {
                 <div className="text-[#C8963E] mb-6 inline-flex p-4 bg-white/5 rounded-2xl group-hover:scale-110 group-hover:bg-[#C8963E] group-hover:text-white transition-all duration-500 shadow-inner">
                   {reason.icon}
                 </div>
-                <p className=" font-medium tracking-light font-noto  text-white text-xl mb-4 group-hover:text-[#C8963E] transition-colors">{reason.title}</p>
+                <p className="font-sans font-semibold tracking-tight text-white text-2xl mb-4 group-hover:text-[#C8963E] transition-colors">{reason.title}</p>
                 <p className="text-white/50 text-sm leading-relaxed">{reason.desc}</p>
               </div>
             </div>

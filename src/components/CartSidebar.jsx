@@ -16,7 +16,7 @@ export default function CartSidebar({ isOpen, onClose }) {
       
       <div className="relative w-full max-w-md bg-white h-full shadow-xl flex flex-col">
         <div className="flex items-center justify-between p-4 border-b">
-          <p className="font-serif text-xl font-bold text-xl tracking-light font-noto">Shopping Cart ({cart.length})</p>
+          <p className="font-sans text-xl font-bold text-xl tracking-light font-sans">Shopping Cart ({cart.length})</p>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
             <FiX className="w-5 h-5" />
           </button>
@@ -39,7 +39,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                     <Image src={item.image} alt={item.name} fill className="object-cover rounded" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-noto  text-sm line-clamp-1">{item.name}</p>
+                    <p className="font-sans  text-sm line-clamp-1">{item.name}</p>
                     <p className="text-primary font-semibold">₹{item.price}</p>
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center border rounded-full">

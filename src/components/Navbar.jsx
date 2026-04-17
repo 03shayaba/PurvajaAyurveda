@@ -25,7 +25,7 @@ export default function Navbar() {
                 <div className="w-12 h-12 relative mr-3">
                   <Image src="/logo.jpeg" alt="Purvaj Ayurveda" fill className="object-contain" />
                 </div>
-                <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight">
+                <span className="font-sans text-xl sm:text-2xl font-bold tracking-tight">
                   <span className="text-[#2D5A27]">Purvaj</span>
                   <span className="text-[#C8963E]">Ayurveda</span>
                 </span>

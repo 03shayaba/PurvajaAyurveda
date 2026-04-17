@@ -97,14 +97,14 @@ export default function HeroSlider() {
         <div className="relative z-10 h-full flex items-center">
           <div className="w-full px-8 sm:px-12 md:px-16 lg:px-20">
             <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center items-center">
-              <div className="hero-badge inline-flex justify-center items-center bg-[#C8963E]/20 border border-[#C8963E]/50 text-[#C8963E] text-xs font-semibold px-4 py-1.5 rounded-full mb-5 sm:mb-7 tracking-wider uppercase">
+              <div className="hero-badge inline-flex justify-center items-center bg-[#C8963E]/20 border border-[#C8963E]/50 text-[#C8963E] text-[10px] font-sans px-5 py-1.5 rounded-full mb-5 sm:mb-7 tracking-tight uppercase">
                 {slide.badge}
               </div>
 
-              <h1 className="hero-heading text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl  font-bold tracking-light font-noto  text-white mb-3 sm:mb-4 leading-tight ">
+              <h1 className="hero-heading text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight text-white mb-3 sm:mb-4 leading-tight">
                 {slide.heading}
                 <br />
-                <span className="text-[#C8963E]">{slide.highlight}</span>
+                <span className="text-[#C8963E] ">{slide.highlight}</span>
               </h1>
 
               <p className="hero-sub text-sm text-center sm:text-base md:text-lg text-white/80 mb-8 sm:mb-10 leading-relaxed">

@@ -11,10 +11,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="footer-column">
-            <h3 className="font-serif text-3xl font-bold mb-6 text-white tracking-tight">
+            <h3 className="font-sans text-3xl font-bold mb-6 text-white tracking-tight">
               Purvaj<span className="text-[#C8963E]">Ayurveda</span>
             </h3>
-            <p className="text-white/40 mb-8 leading-relaxed max-w-xs italic font-light text-sm">
+            <p className="text-white/40 mb-8 leading-relaxed max-w-xs  font-light text-sm">
               Crafting sacred herbal remedies since 1917. We bridge the gap between ancient alchemy and modern purity for your holistic wellness.
             </p>
             <div className="flex space-x-4">
@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-column lg:pl-10">
-            <h4 className="text-xl font-semibold mb-8 text-[#C8963E] tracking-light font-noto">Sanctuary</h4>
+            <h4 className="text-xl font-semibold mb-8 text-[#C8963E] tracking-light font-sans">Sanctuary</h4>
             <ul className="space-y-4">
               {['Shop All Products', 'About Our Legacy', 'The Ayurveda Story', 'Gold Standards', 'Wellness Blog'].map((link) => (
                 <li key={link}>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-column lg:pl-5">
-            <h4 className="text-xl font-semibold mb-8 text-[#C8963E] font-semibold tracking-light font-noto">Care</h4>
+            <h4 className="text-xl font-semibold mb-8 text-[#C8963E] font-semibold tracking-light font-sans">Care</h4>
             <ul className="space-y-4">
               {['Order & Shipping', 'Refund Policy', 'Track Your Ritual', 'Contact Us', 'Privacy Policy'].map((link) => (
                 <li key={link}>
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-column">
-            <h4 className="text-xl font-semibold tracking-light font-noto mb-8 text-[#C8963E] tracking-light ">Get in Touch</h4>
+            <h4 className="text-xl font-semibold tracking-light font-sans mb-8 text-[#C8963E] tracking-light ">Get in Touch</h4>
             <ul className="space-y-6">
               <li className="flex items-start group">
                 <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mr-4 group-hover:bg-[#C8963E]/20 transition-all duration-500">

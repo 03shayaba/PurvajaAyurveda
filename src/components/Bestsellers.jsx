@@ -70,7 +70,11 @@ export default function Bestsellers() {
   return (
     <section ref={sectionRef} className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <p className="text-3xl sm:text-4xl font-bold text-center mb-8 tracking-light text-[#1B4332] font-noto">Bestsellers</p>
+        <div className="text-center mb-12">
+          <span className="text-[#C8963E] font-bold tracking-luxury uppercase text-[10px] block mb-2">Our Pride</span>
+          <p className="text-3xl sm:text-4xl font-sans font-semibold tracking-tight text-[#1B4332]">Our Bestsellers</p>
+          <div className="w-16 h-0.5 bg-[#C8963E]/30 mx-auto mt-4 rounded-full"></div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {products.map((p, index) => (
             <Link
@@ -99,8 +103,8 @@ export default function Bestsellers() {
 
               {/* Content Section */}
               <div className="flex-grow px-2">
-                <p className="font-noto text-md font-semibold text-gray-900 mb-1 tracking-tight leading-tight">{p.name}</p>
-                <p className="text-gray-400 text-xs mb-4 font-medium">{p.tagline}</p>
+                <p className="text-md font-semibold  tracking-light font-sans text-gray-900 mb-1 leading-tight group-hover:text-[#2D5A27] transition-colors line-clamp-2 min-h-[3rem] flex items-center">{p.name}</p>
+                <p className="text-[#C8963E] text-[8px] mb-4 font-bold uppercase tracking-luxury">{p.tagline}</p>
 
                 <div className="flex items-center gap-2 mb-6">
                   <span className="font-bold text-xl text-[#2D5A27]">₹{p.price}</span>
