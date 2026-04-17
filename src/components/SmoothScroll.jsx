@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 export default function SmoothScroll({ children }) {
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function SmoothScroll({ children }) {
 
     function raf(time) {
       lenis.raf(time);
+      ScrollTrigger.update();
       requestAnimationFrame(raf);
     }
 

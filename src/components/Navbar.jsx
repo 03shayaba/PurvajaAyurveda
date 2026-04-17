@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
         {/* <div className="bg-[#2D5A27] text-white text-center py-2.5 text-sm font-medium tracking-wide">
           Summer Sale: Buy 1 @ 15% Off, Buy 2 @ 25% Off &nbsp;|&nbsp; FREE PROTEIN SAMPLE on orders above ₹1200
         </div> */}
