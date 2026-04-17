@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { FiShoppingCart, FiHeart, FiArrowLeft, FiCheck } from 'react-icons/fi';
+import { FiShoppingCart, FiHeart, FiArrowLeft, FiCheck, FiTruck, FiShield, FiRotateCcw, FiStar } from 'react-icons/fi';
 import { useCart } from '@/context/CartContext';
+import gsap from 'gsap';
 
 const products = [
   { id: 1, name: 'Slim Dream - Weight Management', tagline: 'Natural weight loss & fat burn', price: 595, mrp: 699, image: '/products/slimdream.jpg', tag: '15% off', description: 'Slim Dream is a powerful Ayurvedic weight management supplement formulated with natural ingredients that help in fat burning, debloating, and healthy weight loss. Made with pure herbs for effective results.', benefits: ['Natural fat burning', 'Reduces bloating', 'Boosts metabolism', '100% Ayurvedic'] },
@@ -24,6 +25,21 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!containerRef.current || !product) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
+
+      tl.from(".product-image", { x: -50, opacity: 0, scale: 0.95 })
+        .from(".product-info > *", { y: 30, opacity: 0, stagger: 0.1 }, "-=0.5")
+        .from(".attribute-card", { scale: 0.8, opacity: 0, stagger: 0.1 }, "-=0.3");
+    }, containerRef.current);
+
+    return () => ctx.revert();
+  }, [product]);
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
@@ -33,10 +49,10 @@ export default function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#FFFAF5]">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-          <Link href="/products" className="text-primary hover:underline">Back to Products</Link>
+          <p className="text-2xl font-bold mb-4 font-noto tracking-light text-[#1B4332]">Alchemist's Error: Product Not Found</p>
+          <Link href="/products" className="text-[#C8963E] hover:underline font-medium">Return to Collections</Link>
         </div>
       </div>
     );
@@ -45,93 +61,205 @@ export default function ProductDetail() {
   const relatedProducts = products.filter(p => p.id !== productId).slice(0, 4);
 
   return (
-    <div>
-      {/* Header - Minimized */}
-      <section className="bg-gradient-to-r from-[#0f1f06] via-[#1a3009] to-[#0f1f06] py-3 shadow-lg border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4">
-          <Link href="/products" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#C8963E] hover:text-white transition-colors">
-            <FiArrowLeft className="mr-2" /> Back to Collections
-          </Link>
-        </div>
-      </section>
+    <div ref={containerRef} className="bg-white">
+      {/* Main Product Section - Strict Viewport Hero */}
+      <section className="bg-[#FFFAF5] lg:h-[calc(100vh-80px)] flex items-center py-8 lg:py-0 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 w-full">
+          {/* Inline Breadcrumb */}
+          <div className="hidden lg:flex items-center space-x-2 text-[14px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
+            <Link href="/" className="hover:text-[#2D5A27]  transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/products" className="hover:text-[#2D5A27]  transition-colors">Products</Link>
+            <span>/</span>
+            <span className="text-[#C8963E]">{product.name}</span>
+          </div>
 
-      {/* Product Detail - Reduced top padding */}
-      <section className="pt-6 pb-12 bg-[#FFFAF5]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Image */}
-            <div className="relative h-[400px] md:h-[500px] bg-white rounded-2xl overflow-hidden shadow-lg">
-              <Image src={product.image} alt={product.name} fill className="object-cover" />
-              <span className="absolute top-4 left-4 bg-[#C8963E] text-white px-3 py-1 rounded-full font-medium">
-                {product.tag}
-              </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+
+            {/* Image Gallery Mockup */}
+            <div className="product-image relative flex flex-col items-center">
+              <div className="relative w-full max-w-[480px] aspect-[4/5] lg:max-h-[60vh] bg-white rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white p-1 group">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover rounded-[1.5rem] transition-transform duration-700 group-hover:scale-105"
+                  priority
+                />
+                <div className="absolute top-4 left-4 bg-[#C8963E] text-white text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
+                  {product.tag}
+                </div>
+              </div>
+
+              {/* Trust Attributes - Compact */}
+              <div className="mt-4 flex gap-3 w-full max-w-[480px]">
+                {[
+                  { icon: <FiCheck />, label: "100% Organic" },
+                  { icon: <FiShield />, label: "Lab Tested" },
+                  { icon: <FiRotateCcw />, label: "Pure Extracts" }
+                ].map((item, i) => (
+                  <div key={i} className="flex-1 flex flex-col items-center p-2 bg-white/30 backdrop-blur-sm rounded-xl border border-white">
+                    <div className="text-[#C8963E] text-sm mb-1">{item.icon}</div>
+                    <span className="text-[7px] font-black uppercase tracking-widest text-gray-500 whitespace-nowrap">{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Info */}
-            <div>
-              <p className="font-semibold tracking-light font-noto  text-[#1B4332] text-3xl md:text-4xl font-bold  mb-2">{product.name}</p>
-              <p className="text-gray-600 text-lg mb-4">{product.tagline}</p>
-
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-3xl font-bold text-[#2D5A27]">₹{product.price}</span>
-                <span className="text-xl text-gray-400 line-through">₹{product.mrp}</span>
-                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">{product.tag}</span>
+            {/* Product Info - Compacted */}
+            <div className="product-info space-y-2 lg:space-y-3">
+              <div>
+                <span className="text-[#C8963E] font-black uppercase tracking-[0.3em] text-[12px] mb-2 block">Sacred Formulations</span>
+                <p className="text-3xl lg:text-4xl font-semibold tracking-light font-noto text-[#1B4332] mb-1 leading-tight">
+                  {product.name}
+                </p>
+                <p className="text-[#C8963E] text-base font-medium italic font-noto">{product.tagline}</p>
               </div>
 
-              <p className="text-gray-600 font-noto font-semibold mb-6">{product.description}</p>
-
-              <div className="mb-6">
-                <p className="font-semibold tracking-light font-noto  text-[#1B4332] text-xl md:text-2xl   mb-2">Key Benefits:</p>
-                <ul className="space-y-2">
-                  {product.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-center text-gray-600">
-                      <FiCheck className="text-green-500 mr-2" /> {benefit}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex items-center border rounded-full">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 text-gray-600 hover:text-gray-800">-</button>
-                  <span className="px-4 font-medium">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 text-gray-600 hover:text-gray-800">+</button>
+              <div className="flex items-center gap-6">
+                <div className="flex flex-col">
+                  <span className="text-gray-400 text-[12px] uppercase tracking-widest font-bold mb-1">Energy Exchange</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl font-black text-[#2D5A27]">₹{product.price}</span>
+                    <span className="text-lg text-gray-300 line-through font-medium">₹{product.mrp}</span>
+                  </div>
                 </div>
-                <button
-                  onClick={handleAddToCart}
-                  className={`flex-1 bg-[#2D5A27] hover:bg-[#1E3D1A] text-white px-8 py-3 rounded-full font-medium flex items-center justify-center transition-colors ${added ? 'bg-green-500' : ''}`}
-                >
-                  <FiShoppingCart className="mr-2" /> {added ? 'Added!' : 'Add to Cart'}
-                </button>
-                <button className="w-12 h-12 border-2 border-gray-300 rounded-full flex items-center justify-center hover:border-[#C8963E] hover:text-[#C8963E] transition-colors">
-                  <FiHeart />
-                </button>
+                <div className="h-8 w-px bg-gray-200 hidden md:block"></div>
+                <div className="hidden md:flex flex-col">
+                  <span className="text-gray-400 text-[12px] uppercase tracking-widest font-bold mb-1">Purity Rating</span>
+                  <div className="flex items-center text-[#F5B916]">
+                    {[...Array(5)].map((_, i) => <FiStar key={i} className="fill-current w-3 h-3" />)}
+                    <span className="ml-2 text-gray-600 text-[9px] font-bold">(482 Reviews)</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-gray-600 text-xs leading-relaxed font-noto border-l-4 border-[#C8963E]/20 pl-4 max-w-lg">
+                {product.description}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="pt-1 space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="flex items-center bg-white border border-gray-100 rounded-full h-12 px-1 shadow-sm">
+                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">-</button>
+                    <span className="w-10 text-center font-black text-sm">{quantity}</span>
+                    <button onClick={() => setQuantity(quantity + 1)} className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">+</button>
+                  </div>
+
+                  <button
+                    onClick={handleAddToCart}
+                    className={`flex-1 min-w-[160px] h-12 rounded-full font-black text-[10px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 shadow-xl active:scale-95 ${added ? 'bg-green-600' : 'bg-[#1B4332] hover:bg-[#122e22]'
+                      } text-white`}
+                  >
+                    <FiShoppingCart className="w-4 h-4" />
+                    {added ? 'Blessed & Added' : 'Add to Ritual'}
+                  </button>
+
+                  <button className="w-12 h-12 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:border-[#C8963E] hover:text-[#C8963E] transition-all shadow-sm bg-white">
+                    <FiHeart className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Delivery Note */}
+                <div className="flex items-center gap-3 text-[12px] font-bold text-gray-500 uppercase tracking-widest bg-white/50 p-2.5 rounded-xl border border-white max-w-sm">
+                  <FiTruck className="text-[#C8963E] w-4 h-4" />
+                  <span>Complimentary Shipping on all sacred orders</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Related Products */}
-      <section className="py-12 bg-white">
+      {/* Ritual Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <p className="text-2xl md:text-3xl font-semibold tracking-light font-noto  text-[#1B4332]  text-center mb-8">Related Products</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {relatedProducts.map((relProduct) => (
-              <Link href={`/products/${relProduct.id}`} key={relProduct.id} className="group">
-                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all">
-                  <div className="relative h-40 md:h-48">
-                    <Image src={relProduct.image} alt={relProduct.name} fill className="object-cover" />
-                    <span className="absolute top-2 left-2 bg-[#C8963E] text-white text-xs px-2 py-1 rounded font-medium">
-                      {relProduct.tag}
-                    </span>
-                  </div>
-                  <div className="p-3">
-                    <p className="font-semibold tracking-light font-noto  text-[#1B4332] text-sm mb-1 line-clamp-1">{relProduct.name}</p>
-                    <div className="flex items-center space-x-2">
-                      <span className="font-semibold text-[#2D5A27]">₹{relProduct.price}</span>
-                      <span className="text-gray-400 line-through text-xs">₹{relProduct.mrp}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-xl">
+              <Image src="/products/cover3.jpg" alt="Ritual" fill className="object-cover" />
+              <div className="absolute inset-0 bg-[#1B4332]/20 mix-blend-multiply"></div>
+            </div>
+            <div className="space-y-8 ritual-content">
+              <span className="text-[#C8963E] font-black uppercase tracking-[0.3em] text-[10px]">The Daily Ritual</span>
+              <p className="text-3xl md:text-4xl font-bold tracking-light font-noto text-[#1B4332]">How to Awaken the <br /><span className="text-[#C8963E]">Healing Power</span></p>
+              <div className="space-y-6">
+                {product.benefits.map((benefit, i) => (
+                  <div key={i} className="flex gap-4 group">
+                    <div className="w-8 h-8 rounded-full bg-[#FFFAF5] border border-[#C8963E]/20 flex items-center justify-center flex-shrink-0 text-sm font-black text-[#C8963E] group-hover:bg-[#C8963E] group-hover:text-white transition-colors">
+                      {i + 1}
                     </div>
+                    <p className="text-gray-600 font-noto leading-relaxed">{benefit} — Experience the traditional wisdom in every dose.</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wisdom of the Tribe (Reviews) */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="text-[#C8963E] font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Voices of Wellness</span>
+            <p className="text-3xl md:text-5xl font-bold tracking-light font-noto text-[#1B4332] mb-6">Wisdom of the Tribe</p>
+            <div className="w-20 h-1 bg-[#C8963E] mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: "Ananya R.", text: "This has completely transformed my morning routine. The energy is clean and the focus is sharp.", rating: 5 },
+              { name: "Vikram S.", text: "Authentic taste and visible results within 2 weeks. Purvaj Ayurveda is my go-to for purity.", rating: 5 },
+              { name: "Priya M.", text: "Finally found a brand that respects traditional methods. The packaging is as premium as the product.", rating: 5 }
+            ].map((review, i) => (
+              <div key={i} className="bg-white p-8 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-gray-100 italic">
+                <div className="flex text-[#F5B916] mb-4">
+                  {[...Array(review.rating)].map((_, i) => <FiStar key={i} className="fill-current w-4 h-4" />)}
+                </div>
+                <p className="text-gray-600 mb-6 font-noto leading-relaxed">"{review.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#2D5A27]/10 flex items-center justify-center font-bold text-[#2D5A27] text-xs">
+                    {review.name[0]}
+                  </div>
+                  <span className="font-black text-[10px] uppercase tracking-widest text-[#1B4332]">{review.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Products */}
+      <section className="py-24 bg-white overflow-hidden border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-end mb-16">
+            <div>
+              <span className="text-[#C8963E] font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Complete the Ritual</span>
+              <p className="text-3xl md:text-4xl font-bold tracking-light font-noto text-[#1B4332]">Recommended For You</p>
+            </div>
+            <Link href="/products" className="hidden md:block text-xs font-black uppercase tracking-[0.2em] text-[#C8963E] hover:text-[#2D5A27] transition-colors border-b-2 border-[#C8963E]/20 pb-1">View Collection</Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {relatedProducts.map((p) => (
+              <Link
+                key={p.id}
+                href={`/products/${p.id}`}
+                className="group bg-[#FFFAF5] rounded-[2.5rem] p-4 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col border border-white"
+              >
+                <div className="relative aspect-square rounded-[2rem] overflow-hidden mb-6">
+                  <Image src={p.image} alt={p.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-black text-[9px] font-black px-3 py-1.5 rounded-lg shadow-sm uppercase tracking-widest">
+                    {p.tag}
+                  </div>
+                </div>
+                <div className="px-2 pb-2">
+                  <p className="font-noto text-md font-black text-[#1B4332] mb-1 tracking-tight leading-tight group-hover:text-[#C8963E] transition-colors">{p.name}</p>
+                  <p className="text-gray-400 text-[10px] mb-4 font-bold uppercase tracking-widest">{p.tagline}</p>
+                  <div className="flex items-center gap-2">
+                    <span className="font-black text-xl text-[#2D5A27]">₹{p.price}</span>
+                    <span className="text-gray-400 line-through text-xs font-bold">₹{p.mrp}</span>
                   </div>
                 </div>
               </Link>
