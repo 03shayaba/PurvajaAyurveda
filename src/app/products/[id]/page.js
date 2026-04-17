@@ -69,7 +69,7 @@ export default function ProductDetail() {
 
             {/* Info */}
             <div>
-              <h1 className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-2">{product.name}</h1>
+              <p className="font-semibold tracking-light font-noto  text-[#1B4332] text-3xl md:text-4xl font-bold  mb-2">{product.name}</p>
               <p className="text-gray-600 text-lg mb-4">{product.tagline}</p>
 
               <div className="flex items-center gap-4 mb-6">
@@ -78,10 +78,10 @@ export default function ProductDetail() {
                 <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">{product.tag}</span>
               </div>
 
-              <p className="text-gray-600 mb-6">{product.description}</p>
+              <p className="text-gray-600 font-noto font-semibold mb-6">{product.description}</p>
 
               <div className="mb-6">
-                <h3 className="font-semibold text-gray-800 mb-3">Key Benefits:</h3>
+                <p className="font-semibold tracking-light font-noto  text-[#1B4332] text-xl md:text-2xl   mb-2">Key Benefits:</p>
                 <ul className="space-y-2">
                   {product.benefits.map((benefit, i) => (
                     <li key={i} className="flex items-center text-gray-600">
@@ -115,7 +115,7 @@ export default function ProductDetail() {
       {/* Related Products */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-center mb-8">Related Products</h2>
+          <p className="text-2xl md:text-3xl font-semibold tracking-light font-noto  text-[#1B4332]  text-center mb-8">Related Products</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {relatedProducts.map((relProduct) => (
               <Link href={`/products/${relProduct.id}`} key={relProduct.id} className="group">
@@ -127,7 +127,7 @@ export default function ProductDetail() {
                     </span>
                   </div>
                   <div className="p-3">
-                    <h3 className="font-medium text-gray-800 text-sm mb-1 line-clamp-1">{relProduct.name}</h3>
+                    <p className="font-semibold tracking-light font-noto  text-[#1B4332] text-sm mb-1 line-clamp-1">{relProduct.name}</p>
                     <div className="flex items-center space-x-2">
                       <span className="font-semibold text-[#2D5A27]">₹{relProduct.price}</span>
                       <span className="text-gray-400 line-through text-xs">₹{relProduct.mrp}</span>

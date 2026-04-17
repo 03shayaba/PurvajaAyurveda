@@ -62,8 +62,8 @@ export default function ProductCategories() {
     <section ref={sectionRef} className="py-20 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="section-header text-center mb-12">
-          <span className="text-[#C8963E] font-semibold tracking-widest uppercase text-sm">Discover Our Range</span>
-          <h2 className="text-4xl font-bold mt-2 text-gray-900 font-serif">Shop by Category</h2>
+          <span className="text-[#C8963E] font-bold tracking-widest uppercase text-sm">Discover Our Range</span>
+          <p className="text-3xl sm:text-4xl font-bold tracking-light font-noto  mt-2 text-[#1B4332]  ">Shop by Category</p>
           <div className="w-24 h-1 bg-[#C8963E] mx-auto mt-4 rounded-full"></div>
         </div>
         
@@ -82,7 +82,7 @@ export default function ProductCategories() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500" 
                 />
               </div>
-              <p className="font-semibold text-gray-800 group-hover:text-[#C8963E] transition-colors font-serif text-lg tracking-wide text-center">
+              <p className="font-semibold text-gray-800 group-hover:text-[#C8963E] transition-colors  text-sm tracking-wide text-center">
                 {cat.name}
               </p>
             </Link>

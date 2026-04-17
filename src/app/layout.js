@@ -1,4 +1,4 @@
-import { Playfair_Display, Poppins } from "next/font/google";
+import { Playfair_Display, Poppins, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,6 +16,12 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const noto_sans = Noto_Sans({
+  variable: "--font-noto-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata = {
   title: "Purvaj Ayurveda - Premium Herbal Supplements for Natural Wellness",
   description: "Discover Purvaj Ayurveda - Premium herbal supplements for natural wellness. Plant-based formulations, 100% vegetarian, clinically proven.",
@@ -23,13 +29,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${playfair.variable} ${poppins.variable} ${noto_sans.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <SmoothScroll>
           <CartProvider>
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
           </CartProvider>
         </SmoothScroll>
       </body>

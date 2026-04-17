@@ -8,18 +8,40 @@ import ProductList from '@/components/ProductList';
 export default function Products() {
   const heroRef = useRef(null);
 
+  useEffect(() => {
+    if (!heroRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from(".hero-content > *", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+      });
+
+      gsap.from(".hero-bg", {
+        scale: 1.1,
+        duration: 2,
+        ease: "power2.out",
+      });
+    }, heroRef.current);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="bg-[#FFFAF5]">
       {/* Premium Hero Section */}
       <section ref={heroRef} className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background Layer - Exact Match of Homepage Hero Gradient Effect */}
         <div className="absolute inset-0 z-0 text-center">
-          <Image 
-            src="/products/cover4.png" 
-            alt="Ayurvedic Background" 
-            fill 
+          <Image
+            src="/products/cover4.png"
+            alt="Ayurvedic Background"
+            fill
             className="hero-bg object-cover"
-            priority 
+            priority
           />
           {/* Dual Gradient System from Home Page */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f06]/96 via-[#1a3009]/88 to-[#1a3009]/80" />
@@ -32,18 +54,16 @@ export default function Products() {
           <nav className="flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C8963E] mb-8 hero-nav">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white">Shop All</span>
+            <span className="text-white font-semibold tracking-light font-noto">Shop All</span>
           </nav>
 
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-            Our <span className="text-[#C8963E]">Healing</span>
-            <br />
-            Collections
+          <h1 className="text-4xl md:text-6xl font-semibold mb-6 leading-tight tracking-tight ">
+            Shop All <span className="text-[#C8963E] font-semibold tracking-light font-noto">Products</span>
           </h1>
-          
+
           <div className="w-32 h-1 bg-[#C8963E] mx-auto mb-10 rounded-full" />
-          
-          <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed ">
+
+          <p className="text-lg md:text-xl lg:text-xl text-white/90 font-nato max-w-3xl mx-auto leading-relaxed ">
             "Ancient wisdom meets modern purity. Discover formulations crafted to restore your natural balance and vitality."
           </p>
         </div>

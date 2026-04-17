@@ -18,7 +18,7 @@ export default function WhyPurvaja() {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="why-header text-center mb-16">
           <span className="text-[#C8963E] font-extrabold uppercase tracking-[0.3em] text-xs mb-3 block">Boutique Ayurveda</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-serif">
+          <h2 className="text-4xl md:text-5xl  font-bold tracking-light font-noto  text-white mb-4 ">
             Why Choose <span className="text-[#C8963E] ">Purvaj Ayurveda</span>?
           </h2>
           <div className="w-16 h-1 bg-[#C8963E] mx-auto mb-6 rounded-full"></div>
@@ -32,7 +32,7 @@ export default function WhyPurvaja() {
                 <div className="text-[#C8963E] mb-6 inline-flex p-4 bg-white/5 rounded-2xl group-hover:scale-110 group-hover:bg-[#C8963E] group-hover:text-white transition-all duration-500 shadow-inner">
                   {reason.icon}
                 </div>
-                <h3 className="font-serif font-bold text-white text-xl mb-4 group-hover:text-[#C8963E] transition-colors">{reason.title}</h3>
+                <p className=" font-medium tracking-light font-noto  text-white text-xl mb-4 group-hover:text-[#C8963E] transition-colors">{reason.title}</p>
                 <p className="text-white/50 text-sm leading-relaxed">{reason.desc}</p>
               </div>
             </div>

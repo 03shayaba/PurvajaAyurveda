@@ -70,27 +70,27 @@ export default function Bestsellers() {
   return (
     <section ref={sectionRef} className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 font-serif">Bestsellers</h2>
+        <p className="text-3xl sm:text-4xl font-bold text-center mb-8 tracking-light text-[#1B4332] font-noto">Bestsellers</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {products.map((p, index) => (
-            <Link 
-              key={p.id} 
-              href={`/products/${p.id}`} 
+            <Link
+              key={p.id}
+              href={`/products/${p.id}`}
               className="bestseller-card group bg-white rounded-[2rem] p-4 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-gray-50/50"
             >
               {/* Image Section */}
               <div className="relative aspect-square rounded-[1.5rem] overflow-hidden mb-4">
-                <Image 
-                  src={p.image} 
-                  alt={p.name} 
-                  fill 
-                  className="object-cover transition-opacity duration-700 group-hover:opacity-0" 
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  className="object-cover transition-opacity duration-700 group-hover:opacity-0"
                 />
-                <Image 
-                  src={p.hoverImage} 
-                  alt={`${p.name} detail`} 
-                  fill 
-                  className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-110 group-hover:scale-100" 
+                <Image
+                  src={p.hoverImage}
+                  alt={`${p.name} detail`}
+                  fill
+                  className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-110 group-hover:scale-100"
                 />
                 <div className="absolute top-4 left-4 bg-[#F5B916] text-black text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm">
                   {p.tag}
@@ -99,9 +99,9 @@ export default function Bestsellers() {
 
               {/* Content Section */}
               <div className="flex-grow px-2">
-                <h3 className="font-serif text-xl font-bold text-gray-900 mb-1 leading-tight">{p.name}</h3>
+                <p className="font-noto text-md font-semibold text-gray-900 mb-1 tracking-tight leading-tight">{p.name}</p>
                 <p className="text-gray-400 text-xs mb-4 font-medium">{p.tagline}</p>
-                
+
                 <div className="flex items-center gap-2 mb-6">
                   <span className="font-bold text-xl text-[#2D5A27]">₹{p.price}</span>
                   <span className="text-gray-400 line-through text-xs font-medium">₹{p.mrp}</span>
@@ -109,8 +109,8 @@ export default function Bestsellers() {
               </div>
 
               {/* Action Section */}
-              <button 
-                onClick={(e) => handleAddToCart(e, p)} 
+              <button
+                onClick={(e) => handleAddToCart(e, p)}
                 className="w-full bg-[#1B4332] hover:bg-[#122e22] text-white py-4 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm relative overflow-hidden group/btn mb-2"
               >
                 {addedId === p.id ? (

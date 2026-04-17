@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-column lg:pl-10">
-            <h4 className="font-serif text-xl font-bold mb-8 text-[#C8963E]">Sanctuary</h4>
+            <h4 className="text-xl font-semibold mb-8 text-[#C8963E] tracking-light font-noto">Sanctuary</h4>
             <ul className="space-y-4">
               {['Shop All Products', 'About Our Legacy', 'The Ayurveda Story', 'Gold Standards', 'Wellness Blog'].map((link) => (
                 <li key={link}>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-column lg:pl-5">
-            <h4 className="font-serif text-xl font-bold mb-8 text-[#C8963E]">Care</h4>
+            <h4 className="text-xl font-semibold mb-8 text-[#C8963E] font-semibold tracking-light font-noto">Care</h4>
             <ul className="space-y-4">
               {['Order & Shipping', 'Refund Policy', 'Track Your Ritual', 'Contact Us', 'Privacy Policy'].map((link) => (
                 <li key={link}>
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-column">
-            <h4 className="font-serif text-xl font-bold mb-8 text-[#C8963E]">Get in Touch</h4>
+            <h4 className="text-xl font-semibold tracking-light font-noto mb-8 text-[#C8963E] tracking-light ">Get in Touch</h4>
             <ul className="space-y-6">
               <li className="flex items-start group">
                 <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mr-4 group-hover:bg-[#C8963E]/20 transition-all duration-500">

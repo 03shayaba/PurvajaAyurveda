@@ -61,8 +61,12 @@ export default function Features() {
     <section ref={sectionRef} className="py-20 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <div className="feature-header text-center mb-12">
-          <h1 className="text-4xl font-bold mt-2 text-[#C8963E] font-serif">Carefully Crafted Remedies</h1>
-          <h1 className="text-2xl font-bold mt-2 text-gray-900 font-serif">Clean, Green & Sustainable</h1>
+          <span className="font-noto text-[#C8963E] font-medium tracking-widest uppercase text-sm block mb-2">
+            Carefully Crafted Remedies
+          </span>
+          <p className="text-3xl sm:text-4xl    text-[#1B4332] font-bold tracking-light font-noto ">
+            Clean, Green & Sustainable
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
@@ -71,7 +75,7 @@ export default function Features() {
             <Image src="/products/cover2.jpg" alt="Plant based formulations" fill className="object-cover" />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <div className="text-center text-white p-6">
-                <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-3">Plant-based Formulations.<br/>We Promise. We deliver.</h3>
+                <h3 className="font-noto text-xl lg:text-2xl font-medium mb-3  tracking-wide">Plant-based Formulations.<br/>We Promise. We deliver.</h3>
                 <Link href="/about" className="bg-[#C8963E] text-white px-6 py-2 rounded-full font-medium">
                   Know More
                 </Link>

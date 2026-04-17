@@ -50,25 +50,25 @@ export default function HeroSlider() {
 
     const ctx = gsap.context(() => {
       // Reset and animate badge
-      gsap.fromTo(".hero-badge", 
+      gsap.fromTo(".hero-badge",
         { y: -30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
       );
 
       // Heading
-      gsap.fromTo(".hero-heading", 
+      gsap.fromTo(".hero-heading",
         { x: -100, opacity: 0 },
         { x: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power3.out" }
       );
 
       // Subtext
-      gsap.fromTo(".hero-sub", 
+      gsap.fromTo(".hero-sub",
         { x: 100, opacity: 0 },
         { x: 0, opacity: 1, duration: 1, delay: 0.4, ease: "power3.out" }
       );
 
       // Buttons
-      gsap.fromTo(".hero-btn", 
+      gsap.fromTo(".hero-btn",
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, delay: 0.6, stagger: 0.15, ease: "power2.out" }
       );
@@ -101,7 +101,7 @@ export default function HeroSlider() {
                 {slide.badge}
               </div>
 
-              <h1 className="hero-heading text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 leading-tight font-serif">
+              <h1 className="hero-heading text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl  font-bold tracking-light font-noto  text-white mb-3 sm:mb-4 leading-tight ">
                 {slide.heading}
                 <br />
                 <span className="text-[#C8963E]">{slide.highlight}</span>

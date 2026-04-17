@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
     <div>
       <section className="h-[200px] flex items-center justify-center bg-primary-dark">
         <div className="text-center text-white">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-3">Privacy Policy</h1>
+          <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">Privacy Policy</p>
         </div>
       </section>
 
@@ -19,12 +19,12 @@ export default function PrivacyPolicy() {
             
             <div className="space-y-6 text-gray-700">
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">1. Introduction</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">1. Introduction</p>
                 <p>Purvaj Ayurveda respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">2. Information We Collect</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">2. Information We Collect</p>
                 <p>We collect information that you provide directly to us, including but not limited to:</p>
                 <ul className="list-disc pl-6 mt-2">
                   <li>Name and contact information</li>
@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">3. How We Use Your Information</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">3. How We Use Your Information</p>
                 <p>We use the information we collect to:</p>
                 <ul className="list-disc pl-6 mt-2">
                   <li>Process and fulfill your orders</li>
@@ -46,22 +46,22 @@ export default function PrivacyPolicy() {
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">4. Information Sharing</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">4. Information Sharing</p>
                 <p>We do not sell, trade, or otherwise transfer your personal information to outside parties except to trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential.</p>
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">5. Data Security</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">5. Data Security</p>
                 <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">6. Your Consent</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">6. Your Consent</p>
                 <p>By using our website, you consent to our privacy policy.</p>
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold mb-3">7. Contact Us</h2>
+                <p className="font-semibold tracking-light font-noto text-2xl md:text-3xl mb-6">7. Contact Us</p>
                 <p>If you have any questions about this Privacy Policy, please contact us at:</p>
                 <p className="mt-2">Email: info@purvajaayurveda.com</p>
                 <p>Phone: 090539 15050</p>
