@@ -216,6 +216,60 @@ export default function About() {
         </div>
       </section>
 
+      {/* 6. OUR CERTIFICATIONS */}
+      <section className="py-24 bg-[#FFFAF5] reveal-section">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-[#C8963E] font-bold uppercase tracking-widest text-xs mb-3 block">Trusted & Verified</span>
+            <h2 className="text-4xl md:text-5xl font-serif text-[#1B4332]">Our Certifications</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto px-4 items-stretch">
+            {/* Udyam Certificate */}
+            <div className="flex flex-col items-center group max-w-xs mx-auto w-full">
+              <div className="relative w-full aspect-[1/1.4] mb-6 overflow-hidden rounded-2xl shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white">
+                <Image 
+                  src="/products/udyamcertificate.webp" 
+                  alt="Udyam Certificate" 
+                  fill 
+                  className="object-contain p-2"
+                />
+              </div>
+              <h3 className="text-xl font-sans font-semibold text-gray-900 text-center mb-1">Udyam Registration</h3>
+              <p className="text-center text-[#C8963E] text-[10px] uppercase tracking-wider font-bold">Government of India</p>
+            </div>
+
+            {/* Registration Certificate */}
+            <div className="flex flex-col items-center group max-w-xs mx-auto w-full">
+              <div className="relative w-full aspect-[1/1.4] mb-6 overflow-hidden rounded-2xl shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white">
+                <Image 
+                  src="/products/RegisterCertificate.webp" 
+                  alt="Registration Certificate" 
+                  fill 
+                  className="object-contain p-2"
+                />
+              </div>
+              <h3 className="text-xl font-sans font-semibold text-gray-900 text-center mb-1">Registration Certificate</h3>
+              <p className="text-center text-[#C8963E] text-[10px] uppercase tracking-wider font-bold">Official Recognition</p>
+            </div>
+
+            {/* Quality Certificate */}
+            <div className="flex flex-col items-center group max-w-xs mx-auto w-full">
+              <div className="relative w-full aspect-[1/1.4] mb-6 overflow-hidden rounded-2xl shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white">
+                <Image 
+                  src="/products/certificate.webp" 
+                  alt="Quality Certificate" 
+                  fill 
+                  className="object-contain p-2"
+                />
+              </div>
+              <h3 className="text-xl font-sans font-semibold text-gray-900 text-center mb-1">Quality Certificate</h3>
+              <p className="text-center text-[#C8963E] text-[10px] uppercase tracking-wider font-bold">Quality Assured</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Footer */}
       <section className="py-20 text-center reveal-section">
         <h2 className="text-3xl font-serif text-[#1B4332] mb-8">Ready to start your ritual?</h2>

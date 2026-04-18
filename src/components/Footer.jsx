@@ -1,5 +1,6 @@
 "use client";
-import { FiMail, FiPhone, FiMapPin, FiMessageCircle } from 'react-icons/fi';
+import Image from 'next/image';
+import { FiMail, FiPhone, FiMapPin, FiMessageCircle, FiShield, FiAward } from 'react-icons/fi';
 import { FaTwitter, FaInstagram, FaYoutube, FaPinterest } from 'react-icons/fa';
 
 export default function Footer() {
@@ -14,9 +15,22 @@ export default function Footer() {
             <h3 className="font-sans text-3xl font-bold mb-6 text-white tracking-tight">
               Purvaj<span className="text-[#C8963E]">Ayurveda</span>
             </h3>
-            <p className="text-white/40 mb-8 leading-relaxed max-w-xs  font-light text-sm">
+            <p className="text-white/40 mb-6 leading-relaxed max-w-xs font-light text-sm">
               Crafting sacred herbal remedies since 1917. We bridge the gap between ancient alchemy and modern purity for your holistic wellness.
             </p>
+            
+            {/* Trust Badges in Footer */}
+            <div className="flex flex-wrap items-center gap-3 mb-8">
+              <div className="bg-white/5 px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2.5 shadow-lg group hover:bg-[#C8963E]/10 transition-colors">
+                <FiShield className="w-4 h-4 text-[#C8963E] group-hover:scale-110 transition-transform" />
+                <span className="text-white/80 text-[10px] font-bold tracking-widest uppercase">Govt. Reg.</span>
+              </div>
+              <div className="bg-white/5 px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2.5 shadow-lg group hover:bg-[#C8963E]/10 transition-colors">
+                <FiAward className="w-4 h-4 text-[#C8963E] group-hover:scale-110 transition-transform" />
+                <span className="text-white/80 text-[10px] font-bold tracking-widest uppercase">Certified</span>
+              </div>
+            </div>
+
             <div className="flex space-x-4">
               {[
                 { icon: <FaTwitter />, href: "https://twitter.com/Purvajaayurveda" },

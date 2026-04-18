@@ -3,9 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiShoppingCart, FiHeart, FiStar, FiPlay, FiChevronRight, FiChevronLeft, FiCheck } from 'react-icons/fi';
+import { FiShoppingCart, FiHeart, FiStar, FiPlay, FiChevronRight, FiChevronLeft, FiCheck, FiShield, FiAward } from 'react-icons/fi';
 import { useCart } from '@/context/CartContext';
 import gsap from 'gsap';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const products = [
   {
@@ -166,6 +167,34 @@ export default function ProductDetail() {
   }, [activeVideoIndex, visibleCount, gap, product?.videos]);
 
   const maxIndex = product?.videos ? Math.max(0, product.videos.length - visibleCount) : 0;
+  
+  const videoRefs = useRef([]);
+
+  const handlePlayPause = (idx) => {
+    // Pause other videos
+    videoRefs.current.forEach((vid, i) => {
+      if (i !== idx && vid) {
+        vid.pause();
+      }
+    });
+
+    const video = videoRefs.current[idx];
+    if (video) {
+      if (video.paused) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            setPlayingIndex(idx);
+          }).catch(error => {
+            console.warn("Video file missing or play interrupted:", error);
+          });
+        }
+      } else {
+        video.pause();
+        setPlayingIndex(null);
+      }
+    }
+  };
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
@@ -199,8 +228,9 @@ export default function ProductDetail() {
   const relatedProducts = products.filter(p => p.id !== productId).slice(0, 4);
 
   return (
-    <div className="bg-white font-sans pb-20">
-      {/* Breadcrumbs */}
+    <ScrollReveal>
+      <div className="bg-white font-sans pb-20">
+        {/* Breadcrumbs */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <nav className="flex items-center text-[10px] sm:text-xs uppercase tracking-[0.15em] text-gray-400 font-bold">
           <Link href="/" className="hover:text-black transition-colors">Home</Link>
@@ -277,6 +307,22 @@ export default function ProductDetail() {
                   <button className="w-14 h-14 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-red-500 transition-all rounded-xl hover:bg-red-50 active:scale-90 bg-white">
                     <FiHeart className="w-6 h-6" />
                   </button>
+                </div>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="pt-6 border-t border-gray-100 flex items-center gap-6">
+                <div className="flex items-center gap-3 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-[#2D5A27]">
+                    <FiShield className="w-4 h-4" />
+                  </div>
+                  <span>Govt. Reg.</span>
+                </div>
+                <div className="flex items-center gap-3 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-[#2D5A27]">
+                    <FiAward className="w-4 h-4" />
+                  </div>
+                  <span>Certified</span>
                 </div>
               </div>
             </div>
@@ -401,21 +447,25 @@ export default function ProductDetail() {
                         <div className="w-full">
                           <div
                             className="relative group bg-gray-100 rounded-2xl overflow-hidden shadow-md aspect-[9/16] border-2 border-transparent hover:border-[#C8963E] transition-all duration-300 cursor-pointer"
-                            onClick={() => setPlayingIndex(idx)}
+                            onClick={() => handlePlayPause(idx)}
                           >
-                            <iframe
-                              key={`${video}-${playingIndex === idx}`}
-                              src={playingIndex === idx ? `${video}&autoplay=1` : video}
-                              width="100%"
-                              height="100%"
-                              style={{ border: 'none', overflow: 'hidden' }}
-                              scrolling="no"
-                              frameBorder="0"
-                              allowFullScreen={true}
-                              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                              loading="lazy"
-                              className="absolute inset-0"
-                            ></iframe>
+                            <video
+                              ref={el => videoRefs.current[idx] = el}
+                              src={`/videos/video${(idx % 8) + 1}.mp4`}
+                              poster={product.gallery[idx % product.gallery.length] || product.image}
+                              className="w-full h-full object-cover"
+                              playsInline
+                              loop
+                              onPlay={() => setPlayingIndex(idx)}
+                              onPause={() => setPlayingIndex(null)}
+                            />
+                            
+                            {/* Custom Beautiful Play Button Overlay */}
+                            <div className={`absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-300 ${playingIndex === idx ? 'opacity-0' : 'opacity-100 group-hover:bg-black/40'}`}>
+                              <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm transform transition-transform group-hover:scale-110">
+                                <FiPlay className="w-5 h-5 text-[#1B4332] ml-1" fill="currentColor" />
+                              </div>
+                            </div>
                           </div>
                           <p className="text-center mt-4 font-semibold text-gray-800 text-sm tracking-tight text-nowrap overflow-hidden text-ellipsis">
                             {idx === 0 ? "Product Showcase" : idx === 1 ? "Ritual Guide" : "Customer Wisdom"}
@@ -517,28 +567,29 @@ export default function ProductDetail() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {relatedProducts.map((p) => (
-            <Link key={p.id} href={`/products/${p.id}`} className="group block">
-              <div className="relative aspect-square bg-[#F8F8F8] mb-6 overflow-hidden">
-                <Image src={p.image} alt={p.name} fill className="object-contain p-8 group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
-
-                {/* Add to Cart Hover overlay (Mobiles show it below) */}
-                <div className="absolute bottom-0 left-0 w-full h-12 bg-[#2D5A27] translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center">
-                  <span className="text-white text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                    <FiShoppingCart className="w-3 h-3" /> Add to Cart
-                  </span>
-                </div>
+            <Link key={p.id} href={`/products/${p.id}`} className="group flex flex-col bg-white border border-gray-100 rounded-[2rem] p-4 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <div className="relative aspect-square bg-[#F8F8F8] mb-6 overflow-hidden rounded-2xl">
+                <Image src={p.image} alt={p.name} fill className="object-contain p-6 group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
               </div>
-              <div className="text-center px-4">
-                <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">{p.name}</p>
-                <p className="text-xs text-secondary font-bold mb-2">₹{p.price}</p>
-                <div className="flex justify-center mt-2 opacity-50">
-                  <FiStar className="w-2.5 h-2.5" />
+              <div className="text-center px-2 flex flex-col flex-grow">
+                <p className="text-sm font-bold text-gray-900 group-hover:text-[#2D5A27] transition-colors mb-1 line-clamp-1">{p.name}</p>
+                <div className="flex justify-center mb-2 text-[#C8963E]">
+                  {[...Array(5)].map((_, i) => <FiStar key={i} className="w-3 h-3 fill-current" />)}
+                </div>
+                <p className="text-sm text-gray-500 font-bold mb-4">₹{p.price}</p>
+
+                {/* Always Visible Add to Cart Button */}
+                <div className="mt-auto w-full pt-2">
+                  <div className="w-full bg-[#1B4332] hover:bg-[#122e22] text-white py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm relative overflow-hidden">
+                    <FiShoppingCart className="w-4 h-4" /> Add to Cart
+                  </div>
                 </div>
               </div>
             </Link>
           ))}
         </div>
       </section>
-    </div>
+      </div>
+    </ScrollReveal>
   );
 }

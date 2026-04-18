@@ -12,31 +12,64 @@ export default function ScrollReveal({ children }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Select all direct children except the first one (usually Hero)
       const sections = containerRef.current.children;
-      
-      // Skip the first section (Hero) so it loads immediately
       const scrollSections = Array.from(sections).slice(1);
 
       scrollSections.forEach((section) => {
+        // Animation for the section itself - with subtle zoom
         gsap.fromTo(section, 
           { 
             opacity: 0, 
-            y: 40,
+            y: 60,
+            scale: 0.98
           },
           { 
             opacity: 1, 
             y: 0,
-            duration: 1.0,
-            ease: "power2.out",
+            scale: 1,
+            duration: 1.5,
+            ease: "power4.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 92%", // Trigger earlier when section is 92% from top
+              start: "top 90%",
               toggleActions: "play none none none", 
               once: true
             }
           }
         );
+
+        // Staggered animation for titles and items within the section
+        const innerItems = section.querySelectorAll('h2, .grid > div, .stagger-item, p');
+        if (innerItems.length > 0) {
+          gsap.from(innerItems, {
+            y: 20,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+              once: true
+            }
+          });
+        }
+
+        // Parallax effect for images - refined for boutique feel
+        const images = section.querySelectorAll('img');
+        images.forEach(img => {
+          gsap.to(img, {
+            y: -30,
+            scale: 1.05,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1 // Adding scrub smoothness
+            }
+          });
+        });
       });
     }, containerRef);
 
