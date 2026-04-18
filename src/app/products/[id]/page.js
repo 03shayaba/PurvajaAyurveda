@@ -128,6 +128,7 @@ export default function ProductDetail() {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const [added, setAdded] = useState(false);
+  const [playingIndex, setPlayingIndex] = useState(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -221,6 +222,7 @@ export default function ProductDetail() {
               fill
               className="object-contain transition-transform duration-700 group-hover:scale-110"
               priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
           <div className="flex gap-4">
@@ -230,7 +232,7 @@ export default function ProductDetail() {
                 onClick={() => setActiveImage(img)}
                 className={`w-20 h-20 relative bg-[#F8F8F8] border transition-all ${activeImage === img ? 'border-primary' : 'border-transparent'}`}
               >
-                <Image src={img} alt={`Thumbnail ${i}`} fill className="object-contain p-2" />
+                <Image src={img} alt={`Thumbnail ${i}`} fill className="object-contain p-2" sizes="80px" />
               </button>
             ))}
           </div>
@@ -396,9 +398,13 @@ export default function ProductDetail() {
                         style={{ width: itemWidth > 0 ? `${itemWidth}px` : `calc((100% - ${(visibleCount - 1) * gap}px) / ${visibleCount})` }}
                       >
                         <div className="w-full">
-                          <div className="relative group bg-gray-100 rounded-2xl overflow-hidden shadow-md aspect-[9/16] border-2 border-transparent hover:border-[#C8963E] transition-all duration-300">
+                          <div 
+                            className="relative group bg-gray-100 rounded-2xl overflow-hidden shadow-md aspect-[9/16] border-2 border-transparent hover:border-[#C8963E] transition-all duration-300 cursor-pointer"
+                            onClick={() => setPlayingIndex(idx)}
+                          >
                             <iframe
-                              src={video}
+                              key={`${video}-${playingIndex === idx}`}
+                              src={playingIndex === idx ? `${video}&autoplay=1` : video}
                               width="100%"
                               height="100%"
                               style={{ border: 'none', overflow: 'hidden' }}
@@ -512,7 +518,7 @@ export default function ProductDetail() {
           {relatedProducts.map((p) => (
             <Link key={p.id} href={`/products/${p.id}`} className="group block">
               <div className="relative aspect-square bg-[#F8F8F8] mb-6 overflow-hidden">
-                <Image src={p.image} alt={p.name} fill className="object-contain p-8 group-hover:scale-110 transition-transform duration-700" />
+                <Image src={p.image} alt={p.name} fill className="object-contain p-8 group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
 
                 {/* Add to Cart Hover overlay (Mobiles show it below) */}
                 <div className="absolute bottom-0 left-0 w-full h-12 bg-[#2D5A27] translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center">

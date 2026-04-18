@@ -89,12 +89,14 @@ export default function Bestsellers() {
                   alt={p.name}
                   fill
                   className="object-cover transition-opacity duration-700 group-hover:opacity-0"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 <Image
                   src={p.hoverImage}
                   alt={`${p.name} detail`}
                   fill
                   className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-110 group-hover:scale-100"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 <div className="absolute top-4 left-4 bg-[#F5B916] text-black text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm">
                   {p.tag}

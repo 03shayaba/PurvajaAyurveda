@@ -34,7 +34,7 @@ export default function Navbar() {
             <div className="flex items-center">
               <Link href="/" className="flex items-center">
                 <div className="w-12 h-12 relative mr-3">
-                  <Image src="/logo.jpeg" alt="Purvaj Ayurveda" fill className="object-contain" />
+                  <Image src="/logo.jpeg" alt="Purvaj Ayurveda" fill className="object-contain" sizes="48px" />
                 </div>
                 <span className="font-sans text-xl sm:text-2xl font-bold tracking-tight">
                   <span className="text-[#2D5A27]">Purvaj</span>
