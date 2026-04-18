@@ -14,10 +14,15 @@ export default function HealNaturally() {
 
     const ctx = gsap.context(() => {
       gsap.from(".heal-content > *", {
-        y: 50,
+        scrollTrigger: {
+          trigger: ".heal-content",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+        y: 30,
         opacity: 0,
         duration: 1,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power3.out",
       });
     }, sectionRef.current);

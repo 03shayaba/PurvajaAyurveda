@@ -11,69 +11,53 @@ export default function ScrollReveal({ children }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const sections = containerRef.current.children;
-      const scrollSections = Array.from(sections).slice(1);
+    let ctx;
+    
+    // Function to initialize animations
+    const init = () => {
+      ctx = gsap.context(() => {
+        const sections = containerRef.current.children;
+        const scrollSections = Array.from(sections).slice(1);
 
-      scrollSections.forEach((section) => {
-        // Animation for the section itself - with subtle zoom
-        gsap.fromTo(section, 
-          { 
-            opacity: 0, 
-            y: 60,
-            scale: 0.98
-          },
-          { 
-            opacity: 1, 
-            y: 0,
-            scale: 1,
-            duration: 1.5,
-            ease: "power4.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 90%",
-              toggleActions: "play none none none", 
-              once: true
+        scrollSections.forEach((section) => {
+          gsap.fromTo(section, 
+            { 
+              opacity: 0, 
+              y: 20, 
+            },
+            { 
+              opacity: 1, 
+              y: 0,
+              duration: 1.2,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 90%", // Trigger when section is 90% from top
+                toggleActions: "play none none none", 
+                once: true,
+              }
             }
-          }
-        );
-
-        // Staggered animation for titles and items within the section
-        const innerItems = section.querySelectorAll('h2, .grid > div, .stagger-item, p');
-        if (innerItems.length > 0) {
-          gsap.from(innerItems, {
-            y: 20,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 85%",
-              once: true
-            }
-          });
-        }
-
-        // Parallax effect for images - refined for boutique feel
-        const images = section.querySelectorAll('img');
-        images.forEach(img => {
-          gsap.to(img, {
-            y: -30,
-            scale: 1.05,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1 // Adding scrub smoothness
-            }
-          });
+          );
         });
-      });
-    }, containerRef);
+      }, containerRef);
+      
+      // Force a refresh after a small tick
+      ScrollTrigger.refresh();
+    };
 
-    return () => ctx.revert();
+    // Run after a small delay to ensure DOM is ready
+    const timeout = setTimeout(() => {
+      init();
+      // Additional refresh for any late-loading content (like images)
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      if (ctx) ctx.revert();
+      clearTimeout(timeout);
+      window.removeEventListener('load', () => ScrollTrigger.refresh());
+    };
   }, []);
 
   return (

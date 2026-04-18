@@ -15,6 +15,23 @@ export default function Newsletter() {
     setEmail('');
   };
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".newsletter-content", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      });
+    }, sectionRef.current);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section ref={sectionRef} className="py-24 bg-[#0A1A05] relative overflow-hidden">
       {/* Decorative Orbs for Premium Vibe */}

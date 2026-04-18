@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { FiShoppingCart, FiHeart, FiStar, FiPlay, FiChevronRight, FiChevronLeft, FiCheck, FiShield, FiAward } from 'react-icons/fi';
 import { useCart } from '@/context/CartContext';
 import gsap from 'gsap';
-import ScrollReveal from '@/components/ScrollReveal';
 
 const products = [
   {
@@ -228,9 +227,8 @@ export default function ProductDetail() {
   const relatedProducts = products.filter(p => p.id !== productId).slice(0, 4);
 
   return (
-    <ScrollReveal>
-      <div className="bg-white font-sans pb-20">
-        {/* Breadcrumbs */}
+    <div className="bg-white font-sans pb-20">
+      {/* Breadcrumbs */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <nav className="flex items-center text-[10px] sm:text-xs uppercase tracking-[0.15em] text-gray-400 font-bold">
           <Link href="/" className="hover:text-black transition-colors">Home</Link>
@@ -589,7 +587,6 @@ export default function ProductDetail() {
           ))}
         </div>
       </section>
-      </div>
-    </ScrollReveal>
+    </div>
   );
 }

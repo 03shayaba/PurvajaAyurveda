@@ -1,5 +1,10 @@
-'use client';
+"use client";
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FiWind, FiShield, FiHeart, FiClock, FiStar, FiAward, FiUsers } from 'react-icons/fi';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const reasons = [
   { icon: <FiWind className="w-8 h-8" />, title: "100% Natural", desc: "Pure herbal ingredients, no chemicals" },
@@ -9,8 +14,54 @@ const reasons = [
 ];
 
 export default function WhyPurvaja() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header Animation
+      gsap.from(".why-header > *", {
+        scrollTrigger: {
+          trigger: ".why-header",
+          start: "top 85%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+      });
+
+      // Cards Animation
+      gsap.from(".why-card", {
+        scrollTrigger: {
+          trigger: ".why-card",
+          start: "top 85%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power2.out",
+      });
+
+      // Stats Animation
+      gsap.from(".stats-bar > *", {
+        scrollTrigger: {
+          trigger: ".stats-bar",
+          start: "top 90%",
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
+    }, sectionRef.current);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 bg-[#0A1A05] relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-[#0A1A05] relative overflow-hidden">
       {/* Premium Background Atmosphere */}
       <div className="bg-orb absolute top-20 left-10 w-64 h-64 bg-[#C8963E]/5 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="bg-orb absolute bottom-20 right-10 w-80 h-80 bg-[#2D5A27]/20 rounded-full blur-[120px] pointer-events-none"></div>
