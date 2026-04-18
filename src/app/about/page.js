@@ -15,13 +15,21 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero Animations
+      // Hero Background Zoom
+      gsap.from(".hero-bg", {
+        scale: 1.1,
+        duration: 2,
+        ease: "power2.out",
+      });
+
+      // Hero Content Animations
       gsap.from(".hero-content > *", {
         y: 40,
         opacity: 0,
         duration: 1.2,
         stagger: 0.2,
         ease: "power3.out",
+        delay: 0.2
       });
 
       // Section Reveal Animations
@@ -41,24 +49,13 @@ export default function About() {
         });
       });
 
-      // Timeline Logic
-      gsap.from(".timeline-item", {
-        x: (index) => index % 2 === 0 ? -50 : 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: ".timeline-container",
-          start: "top 75%",
-        }
-      });
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="bg-[#FFFAF5]">
+    <div ref={containerRef} className="bg-[#FFFAF5]">
       {/* Premium Hero Section - Matching Product Hero Style */}
       <section ref={heroRef} className="relative h-[80vh] min-h-[550px] flex items-center justify-center overflow-hidden">
         {/* Background Layer - Match Home/Product Hero Style */}
@@ -69,6 +66,7 @@ export default function About() {
             fill
             className="hero-bg object-cover"
             priority
+            sizes="100vw"
           />
           {/* Exact Brand Dual Gradient System */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f06]/96 via-[#1a3009]/88 to-[#1a3009]/80" />
@@ -155,7 +153,7 @@ export default function About() {
             </div>
             
             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
-              <Image src="/products/cover2.jpg" alt="Apothecary Process" fill className="object-cover" />
+              <Image src="/products/cover2.jpg" alt="Apothecary Process" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-[#C8963E]/10" />
             </div>
           </div>
@@ -221,7 +219,7 @@ export default function About() {
       {/* CTA Footer */}
       <section className="py-20 text-center reveal-section">
         <h2 className="text-3xl font-serif text-[#1B4332] mb-8">Ready to start your ritual?</h2>
-        <Link href="/products" className="inline-block bg-[#C8963E] text-white px-10 py-4 rounded-full font-bold uppercase tracking-luxury hover:bg-black transition-all shadow-xl hover:shadow-gold/20">
+        <Link href="/products" className="inline-block bg-[#C8963E] text-white px-10 py-4 rounded-full font-bold uppercase tracking-luxury hover:bg-[#1B4332] transition-all shadow-xl hover:shadow-gold/20">
           Explore Our Blends
         </Link>
       </section>

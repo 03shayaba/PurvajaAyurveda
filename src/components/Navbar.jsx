@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FiMenu, FiX, FiShoppingCart, FiPhone } from 'react-icons/fi';
 import Image from 'next/image';
@@ -9,11 +9,22 @@ import CartSidebar from './CartSidebar';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { cartCount } = useCart();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled 
+        ? 'bg-white/95 backdrop-blur-md shadow-md py-0' 
+        : 'bg-white/80 backdrop-blur-xl py-2'}`}>
         {/* <div className="bg-[#2D5A27] text-white text-center py-2.5 text-sm font-medium tracking-wide">
           Summer Sale: Buy 1 @ 15% Off, Buy 2 @ 25% Off &nbsp;|&nbsp; FREE PROTEIN SAMPLE on orders above ₹1200
         </div> */}

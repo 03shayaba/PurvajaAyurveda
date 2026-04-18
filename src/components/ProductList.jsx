@@ -1,9 +1,14 @@
-'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiShoppingCart, FiHeart } from 'react-icons/fi';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FiShoppingCart, FiHeart, FiSearch } from 'react-icons/fi';
 import { useCart } from '@/context/CartContext';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const products = [
   { id: 1, name: 'Slim Dream - Weight Management', tagline: 'Natural weight loss & fat burn', price: 595, mrp: 699, image: '/products/slimdream.jpg', hoverImage: '/products/slimdreamDet.jpg', tag: '15% off', category: 'Weight Loss' },
@@ -21,8 +26,92 @@ const categories = ['All', 'Energy', 'Detox', 'Weight Loss', 'Liver Care'];
 export default function ProductList() {
   const [addedId, setAddedId] = useState(null);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const { addToCart } = useCart();
+  const sectionRef = useRef(null);
 
+  const filteredProducts = useMemo(() => {
+    return products.filter(p => {
+      const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.tagline.toLowerCase().includes(searchQuery.toLowerCase());
+
+      if (searchQuery) return matchesSearch;
+
+      return activeCategory === 'All' || p.category === activeCategory;
+    });
+  }, [activeCategory, searchQuery]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Header Animation
+      gsap.from(".product-list-header", {
+        scrollTrigger: {
+          trigger: ".product-list-header",
+          start: "top 90%",
+          toggleActions: "play reverse play reverse",
+        },
+        y: -30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+
+      // Search Bar Animation
+      gsap.from(".search-bar-container", {
+        scrollTrigger: {
+          trigger: ".search-bar-container",
+          start: "top 90%",
+          toggleActions: "play reverse play reverse",
+        },
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+
+      // Product Cards Alternating Row Animation
+      const getColumns = () => {
+        if (window.innerWidth >= 1024) return 4;
+        if (window.innerWidth >= 640) return 2;
+        return 1;
+      };
+
+      const columns = getColumns();
+      const cards = gsap.utils.toArray(".product-card");
+
+      cards.forEach((card, index) => {
+        const rowIndex = Math.floor(index / columns);
+        const direction = rowIndex % 2 === 0 ? -150 : 150;
+
+        gsap.fromTo(card,
+          {
+            x: direction,
+            opacity: 0
+          },
+          {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 95%",
+              toggleActions: "play reverse play reverse",
+            },
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: (index % columns) * 0.1,
+            clearProps: "all"
+          }
+        );
+      });
+    }, sectionRef.current);
+
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, [activeCategory, filteredProducts]);
   const handleAddToCart = (e, product) => {
     e.preventDefault();
     e.stopPropagation();
@@ -31,39 +120,66 @@ export default function ProductList() {
     setTimeout(() => setAddedId(null), 1500);
   };
 
-  const filteredProducts = activeCategory === 'All'
-    ? products
-    : products.filter(p => p.category === activeCategory);
-
   return (
-    <section className="py-12 bg-[#FFFAF5]">
+    <section ref={sectionRef} className="py-12 bg-[#FFFAF5] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="font-semibold tracking-light font-sans text-2xl md:text-3xl  text-[#1B4332] text-center mb-2">All Products</h2>
+        <div className="product-list-header">
+          <h2 className="font-semibold tracking-light font-sans text-2xl md:text-3xl  text-[#1B4332] text-center mb-2">All Products</h2>
+          <p className="text-center text-gray-600 mb-6">Shop by Category</p>
+        </div>
 
-        <p className="text-center text-gray-600 mb-6">Shop by Category</p>
-
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-12 border-b border-gray-100 pb-4">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === cat
-                ? 'bg-primary-dark text-white'
-                : 'bg-white text-gray-600 hover:bg-primary/10'
+              onClick={() => {
+                setActiveCategory(cat);
+                setSearchQuery('');
+              }}
+              className={`category-btn relative py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 group ${activeCategory === cat
+                ? 'text-[#1B4332]'
+                : 'text-gray-400 hover:text-[#1B4332]'
                 }`}
             >
               {cat}
+              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#C8963E] transition-all duration-300 transform origin-left ${activeCategory === cat ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'
+                }`} />
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {filteredProducts.map((product) => (
-            <Link
-              key={product.id}
-              href={`/products/${product.id}`}
-              className="group bg-white rounded-[2rem] p-4 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-gray-50/50"
-            >
+        {/* Premium Search Bar */}
+        <div className="search-bar-container max-w-md mx-auto mb-12 relative group">
+          <div className="relative flex items-center">
+            <input
+              type="text"
+              placeholder="Search remedies..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-6 pr-12 py-4 bg-white border border-gray-100 rounded-2xl shadow-sm focus:ring-2 focus:ring-[#1B4332]/10 focus:border-[#1B4332] transition-all outline-none text-sm font-sans"
+            />
+            <div className="absolute right-4 flex items-center gap-3">
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="text-gray-400 hover:text-red-500 text-[10px] font-bold uppercase tracking-wider"
+                >
+                  Clear
+                </button>
+              )}
+              <FiSearch className={`text-gray-400 group-focus-within:text-[#1B4332] transition-colors ${searchQuery ? 'opacity-0' : 'opacity-100'}`} />
+            </div>
+          </div>
+        </div>
+
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {filteredProducts.map((product, index) => (
+              <Link
+                key={product.id}
+                href={`/products/${product.id}`}
+                className="product-card group bg-white rounded-[2rem] p-4 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-gray-50/50"
+              >
               {/* Image Section with Hover Effect */}
               <div className="relative aspect-square rounded-[1.5rem] overflow-hidden mb-4">
                 <Image
@@ -118,6 +234,20 @@ export default function ProductList() {
             </Link>
           ))}
         </div>
+        ) : (
+          <div className="text-center py-20 bg-white rounded-[2rem] border border-dashed border-gray-200">
+            <p className="text-[#1B4332] font-semibold mb-2">No remedies found matching "{searchQuery}"</p>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                setActiveCategory('All');
+              }}
+              className="text-[#C8963E] text-xs font-bold uppercase tracking-luxury hover:underline"
+            >
+              View all products
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

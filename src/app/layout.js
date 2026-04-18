@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import SmoothScroll from "@/components/SmoothScroll";
+import PremiumUI from "@/components/PremiumUI";
 
 
 const dm_sans = DM_Sans({
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
       <body className="font-sans antialiased" suppressHydrationWarning>
         <SmoothScroll>
           <CartProvider>
+            <PremiumUI />
             <Navbar />
             <main>{children}</main>
             <Footer />
