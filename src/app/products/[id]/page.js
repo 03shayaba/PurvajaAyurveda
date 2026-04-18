@@ -276,57 +276,107 @@ export default function ProductDetail() {
               Pure Ayurvedic Formulation
             </p>
 
-            <p className="text-3xl font-bold text-[#2D5A27] mb-8">
+            <p className="text-3xl font-bold text-[#2D5A27] mb-2">
               ₹{product.price}
             </p>
+            <p className="text-gray-400 text-[10px] line-through mb-8 font-medium">MRP: ₹{product.mrp}</p>
 
-            <div className="space-y-6 max-w-md">
-              <div className="flex items-center gap-4">
-                <span className="font-bold text-xs uppercase tracking-widest text-gray-500">QTY</span>
-                <div className="flex items-center border border-gray-200 h-10 px-4 rounded-full">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 flex items-center justify-center font-bold text-gray-500 hover:text-black">-</button>
-                  <span className="w-10 text-center font-bold text-sm">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="w-8 h-8 flex items-center justify-center font-bold text-gray-500 hover:text-black">+</button>
+            <div className="space-y-8 max-w-md">
+              {/* Product Key Highlights */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: <FiCheck className="w-3 h-3" />, label: "100% Natural" },
+                  { icon: <FiCheck className="w-3 h-3" />, label: "Vegan" },
+                  { icon: <FiCheck className="w-3 h-3" />, label: "No Side Effects" },
+                  { icon: <FiCheck className="w-3 h-3" />, label: "Legacy Brand" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-[10px] font-bold text-gray-600 uppercase tracking-wider">
+                    <div className="w-5 h-5 rounded-full bg-[#2D5A27]/10 flex items-center justify-center text-[#2D5A27]">
+                      {item.icon}
+                    </div>
+                    {item.label}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-6">
+                <span className="font-bold text-[10px] uppercase tracking-[0.2em] text-gray-400">Quantity</span>
+                <div className="flex items-center bg-gray-50 rounded-full p-1 border border-gray-100">
+                  <button 
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))} 
+                    className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm transition-all text-gray-500"
+                  >
+                    -
+                  </button>
+                  <span className="w-8 text-center font-bold text-sm">{quantity}</span>
+                  <button 
+                    onClick={() => setQuantity(quantity + 1)} 
+                    className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm transition-all text-gray-500"
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <button
                   onClick={handleAddToCart}
-                  className={`w-full h-14 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 active:scale-95 rounded-xl shadow-lg ${added ? 'bg-green-600' : 'bg-[#1B4332] hover:bg-[#122e22]'}`}
+                  className={`w-full h-14 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 active:scale-95 rounded-xl shadow-lg relative overflow-hidden group ${added ? 'bg-green-600' : 'bg-[#1B4332] hover:bg-[#122e22]'}`}
                 >
                   <FiShoppingCart className="w-5 h-5" />
                   {added ? 'Added to Cart' : 'Add to Cart'}
+                  <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12"></div>
                 </button>
+                
                 <div className="flex gap-3">
-                  <button className="flex-1 h-14 border-2 border-[#1B4332] text-[#1B4332] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all hover:bg-[#1B4332] hover:text-white rounded-xl active:scale-95">
+                  <button className="flex-1 h-14 border-2 border-[#1B4332] text-[#1B4332] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all hover:bg-[#1B4332] hover:text-white rounded-xl active:scale-95 font-black">
                     Buy Now
                   </button>
-                  <button className="w-14 h-14 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-red-500 transition-all rounded-xl hover:bg-red-50 active:scale-90 bg-white">
+                  <button className="w-14 h-14 border border-gray-200 flex items-center justify-center text-gray-300 hover:text-red-500 transition-all rounded-xl hover:bg-red-50 hover:border-red-100 active:scale-90 bg-white shadow-sm">
                     <FiHeart className="w-6 h-6" />
                   </button>
                 </div>
               </div>
 
               {/* Trust Badges */}
-              <div className="pt-6 border-t border-gray-100 flex items-center gap-6">
-                <div className="flex items-center gap-3 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                  <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-[#2D5A27]">
-                    <FiShield className="w-4 h-4" />
+              <div className="pt-8 border-t border-gray-100 flex items-center gap-8">
+                <div className="flex flex-col items-center gap-2 group">
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#2D5A27] transition-all duration-300 group-hover:bg-[#2D5A27] group-hover:text-white group-hover:rotate-12 group-hover:shadow-lg">
+                    <FiShield className="w-6 h-6" />
                   </div>
-                  <span>Govt. Reg.</span>
+                  <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Govt. Reg</span>
                 </div>
-                <div className="flex items-center gap-3 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                  <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-[#2D5A27]">
-                    <FiAward className="w-4 h-4" />
+                <div className="flex flex-col items-center gap-2 group">
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#2D5A27] transition-all duration-300 group-hover:bg-[#2D5A27] group-hover:text-white group-hover:rotate-12 group-hover:shadow-lg">
+                    <FiAward className="w-6 h-6" />
                   </div>
-                  <span>Certified</span>
+                  <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Certified</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 group">
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#2D5A27] transition-all duration-300 group-hover:bg-[#2D5A27] group-hover:text-white group-hover:rotate-12 group-hover:shadow-lg">
+                    <FiCheck className="w-6 h-6" />
+                  </div>
+                  <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Purity</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Sticky Mobile Buy Bar */}
+      <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 p-4 z-[45] lg:hidden flex items-center gap-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)] animate-slide-up">
+        <div className="flex-1">
+          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">{product.name}</p>
+          <p className="font-bold text-[#2D5A27]">₹{product.price}</p>
+        </div>
+        <button 
+          onClick={handleAddToCart}
+          className="bg-[#1B4332] text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest"
+        >
+          {added ? 'Added' : 'Add to Cart'}
+        </button>
+      </div>
 
       {/* Tabs Section - Compacted */}
       <section className="max-w-7xl mx-auto px-4 border-t border-gray-100 pt-12 mb-12">

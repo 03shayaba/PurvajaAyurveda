@@ -18,7 +18,7 @@ export default function Footer() {
             <p className="text-white/40 mb-6 leading-relaxed max-w-xs font-light text-sm">
               Crafting sacred herbal remedies since 1917. We bridge the gap between ancient alchemy and modern purity for your holistic wellness.
             </p>
-            
+
             {/* Trust Badges in Footer */}
             <div className="flex flex-wrap items-center gap-3 mb-8">
               <div className="bg-white/5 px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2.5 shadow-lg group hover:bg-[#C8963E]/10 transition-colors">
@@ -38,11 +38,11 @@ export default function Footer() {
                 { icon: <FaInstagram />, href: "https://instagram.com/purvajaayurveda" },
                 { icon: <FaPinterest />, href: "https://in.pinterest.com/purvajaayurveda/" }
               ].map((social, i) => (
-                <a 
-                  key={i} 
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center text-white/50 hover:bg-[#C8963E] hover:text-white hover:border-[#C8963E] transition-all duration-300 shadow-lg"
                 >
                   {social.icon}
@@ -96,7 +96,7 @@ export default function Footer() {
                 <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mr-4 group-hover:bg-[#C8963E]/20 transition-all duration-500">
                   <FiMapPin className="w-5 h-5 text-[#C8963E]" />
                 </div>
-                <span className="text-white/40 text-sm mt-1.5 font-medium leading-relaxed">Sonipat, Haryana,<br/>India, 131001</span>
+                <span className="text-white/40 text-sm mt-1.5 font-medium leading-relaxed">Sonipat, Haryana,<br />India, 131001</span>
               </li>
             </ul>
           </div>
