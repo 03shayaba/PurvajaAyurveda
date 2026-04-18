@@ -262,21 +262,22 @@ export default function ProductDetail() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <div className="flex flex-col gap-4">
                 <button
                   onClick={handleAddToCart}
-                  className={`flex-[2] w-full h-12 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 active:scale-95 rounded-full ${added ? 'bg-green-600' : 'bg-[#2D5A27] hover:bg-[#1E3D1A]'
-                    }`}
+                  className={`w-full h-14 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 active:scale-95 rounded-xl shadow-lg ${added ? 'bg-green-600' : 'bg-[#1B4332] hover:bg-[#122e22]'}`}
                 >
-                  <FiShoppingCart className="w-4 h-4" />
+                  <FiShoppingCart className="w-5 h-5" />
                   {added ? 'Added to Cart' : 'Add to Cart'}
                 </button>
-                <button className="flex-1 w-full h-12 border border-gray-200 text-black text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all hover:bg-black hover:text-white rounded-full active:scale-95">
-                  Buy Now
-                </button>
-                <button className="w-12 h-12 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-red-500 transition-all rounded-full hover:bg-red-50 active:scale-90">
-                  <FiHeart className="w-5 h-5" />
-                </button>
+                <div className="flex gap-3">
+                  <button className="flex-1 h-14 border-2 border-[#1B4332] text-[#1B4332] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all hover:bg-[#1B4332] hover:text-white rounded-xl active:scale-95">
+                    Buy Now
+                  </button>
+                  <button className="w-14 h-14 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-red-500 transition-all rounded-xl hover:bg-red-50 active:scale-90 bg-white">
+                    <FiHeart className="w-6 h-6" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -398,7 +399,7 @@ export default function ProductDetail() {
                         style={{ width: itemWidth > 0 ? `${itemWidth}px` : `calc((100% - ${(visibleCount - 1) * gap}px) / ${visibleCount})` }}
                       >
                         <div className="w-full">
-                          <div 
+                          <div
                             className="relative group bg-gray-100 rounded-2xl overflow-hidden shadow-md aspect-[9/16] border-2 border-transparent hover:border-[#C8963E] transition-all duration-300 cursor-pointer"
                             onClick={() => setPlayingIndex(idx)}
                           >
